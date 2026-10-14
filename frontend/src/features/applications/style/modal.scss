@@ -1,0 +1,171 @@
+@use "../../../style/variables.scss" as *;
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+  animation: fadeIn 0.15s ease-out;
+
+  .modal-dialog {
+    background: #ffffff;
+    border: 1px solid $border-subtle;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: $shadow-modal;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: scaleUp 0.15s ease-out;
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid $border-subtle;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0;
+      }
+
+      .btn-close {
+        background: transparent;
+        border: none;
+        color: $text-muted;
+        cursor: pointer;
+        font-size: 1.2rem;
+        padding: 4px;
+        border-radius: $radius-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+
+        &:hover {
+          background: #f1f5f9;
+          color: $text-primary;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 75vh;
+      overflow-y: auto;
+
+      .modal-error-alert {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #b91c1c;
+        padding: 10px 14px;
+        border-radius: $radius-sm;
+        font-size: 0.84rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+          font-size: 0.84rem;
+          font-weight: 600;
+          color: $text-secondary;
+
+          .required-star {
+            color: #ef4444;
+            margin-left: 2px;
+          }
+        }
+
+        input,
+        select,
+        textarea {
+          width: 100%;
+          padding: 10px 14px;
+          background: #ffffff;
+          border: 1px solid $border-subtle;
+          border-radius: $radius-md;
+          font-size: 0.88rem;
+          color: $text-primary;
+          outline: none;
+          transition: all 0.15s ease;
+
+          &::placeholder {
+            color: $text-placeholder;
+          }
+
+          &:focus {
+            border-color: $primary-purple;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+          }
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 80px;
+        }
+
+        .field-error {
+          font-size: 0.78rem;
+          color: #dc2626;
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      border-top: 1px solid $border-subtle;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    // Delete Modal Confirmation Customization
+    &.delete-dialog {
+      max-width: 440px;
+
+      .delete-prompt {
+        font-size: 0.92rem;
+        color: $text-secondary;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

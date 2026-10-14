@@ -1,0 +1,539 @@
+@use "../../../style/variables.scss" as *;
+
+/* =========================================
+   KANBAN BOARD
+   ========================================= */
+
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0 2px 16px;
+
+  .kanban-column {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 520px;
+    min-height: 520px;
+    max-height: 520px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background: #f8fafc;
+    border: 1px solid $border-subtle;
+    border-radius: $radius-lg;
+    display: flex;
+    flex-direction: column;
+    box-shadow: $shadow-sm;
+
+    /* Column header */
+    .column-header {
+      flex: 0 0 auto;
+      min-width: 0;
+      padding: 12px 10px;
+      border-top-left-radius: $radius-lg;
+      border-top-right-radius: $radius-lg;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+
+      .column-title-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+
+        .column-icon {
+          font-size: 0.95rem;
+          display: flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+
+        .column-title {
+          font-weight: 700;
+          overflow-wrap: anywhere;
+        }
+
+        .column-count-badge {
+          background: rgba(255, 255, 255, 0.25);
+          color: #ffffff;
+          padding: 2px 6px;
+          border-radius: $radius-full;
+          font-size: 0.7rem;
+          font-weight: 700;
+          flex-shrink: 0;
+        }
+      }
+
+      &.header-applied {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      }
+
+      &.header-interview {
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+      }
+
+      &.header-offer {
+        background: linear-gradient(135deg, #10b981, #059669);
+      }
+
+      &.header-rejected {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+      }
+    }
+
+    /* Only application cards scroll */
+    .cards-stack {
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1 1 0;
+      min-height: 0;
+      min-width: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior-y: contain;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+
+      .empty-column {
+        text-align: center;
+        padding: 32px 8px;
+        color: $text-placeholder;
+        font-size: 0.82rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+
+    .cards-stack::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .cards-stack::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .cards-stack::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .cards-stack::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Add Job button */
+    .btn-column-add {
+      flex: 0 0 auto;
+      margin: 0 10px 12px;
+      padding: 9px 6px;
+      background: #ffffff;
+      border: 1px dashed $border-hover;
+      border-radius: $radius-md;
+      color: $text-muted;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s ease, border-color 0.15s ease,
+        color 0.15s ease;
+
+      &:hover {
+        background: $primary-purple-light;
+        border-color: $primary-purple;
+        color: $primary-purple;
+      }
+    }
+  }
+}
+
+/* =========================================
+   APPLICATION CARDS
+   ========================================= */
+
+.app-card {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  background: #ffffff;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: 12px;
+  box-shadow: $shadow-card;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: $border-hover;
+    box-shadow: $shadow-hover;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6px;
+    min-width: 0;
+
+    .card-company {
+      min-width: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+      opacity: 0.85;
+      transition: opacity 0.15s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      .btn-icon {
+        background: transparent;
+        border: none;
+        padding: 4px;
+        color: $text-muted;
+        cursor: pointer;
+        border-radius: $radius-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s ease, color 0.15s ease;
+
+        &:hover {
+          background: #f1f5f9;
+          color: $text-primary;
+        }
+
+        &.btn-delete:hover {
+          background: #fef2f2;
+          color: #dc2626;
+        }
+      }
+    }
+  }
+
+  .card-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+    overflow-wrap: anywhere;
+  }
+
+  .card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-size: 0.75rem;
+    color: $text-muted;
+    overflow-wrap: anywhere;
+
+    .meta-icon {
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+  }
+
+  .card-notes-preview {
+    font-size: 0.76rem;
+    color: $text-secondary;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: $radius-sm;
+    padding: 6px 8px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-bottom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid #f1f5f9;
+    min-width: 0;
+
+    .status-select-badge {
+      max-width: 100%;
+      min-width: 0;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 6px;
+      border-radius: $radius-sm;
+      border: 1px solid transparent;
+      outline: none;
+      cursor: pointer;
+      background: #ffffff;
+      transition: all 0.15s ease;
+
+      &.status-applied {
+        color: #7c3aed;
+        background: #f5f3ff;
+        border-color: #ddd6fe;
+      }
+
+      &.status-interview {
+        color: #0284c7;
+        background: #f0f9ff;
+        border-color: #bae6fd;
+      }
+
+      &.status-offer {
+        color: #059669;
+        background: #ecfdf5;
+        border-color: #a7f3d0;
+      }
+
+      &.status-rejected {
+        color: #dc2626;
+        background: #fef2f2;
+        border-color: #fecaca;
+      }
+    }
+  }
+}
+
+/* =========================================
+   DRAG AND DROP
+   ========================================= */
+
+.app-card[draggable="true"] {
+  cursor: grab;
+}
+
+.app-card[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+.app-card.dragging {
+  opacity: 0.45;
+  transform: scale(0.98);
+}
+
+.kanban-column.drag-over {
+  background: rgba(99, 102, 241, 0.08);
+  outline: 2px dashed #6366f1;
+  outline-offset: -4px;
+  border-radius: 12px;
+}
+
+.kanban-column.drag-over .cards-stack {
+  min-height: 120px;
+}
+
+.drop-hint {
+  padding: 12px;
+  margin: 8px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6366f1;
+  border: 1px dashed #a5b4fc;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   TABLE VIEW
+   The table itself may scroll when necessary.
+   ========================================= */
+
+.table-view-container {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+
+  table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+
+    th,
+    td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid $border-subtle;
+    }
+
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: $text-secondary;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: #fafaf9;
+    }
+
+    .table-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+}
+
+/* =========================================
+   TABLET: TWO COLUMNS PER ROW
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .kanban-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .kanban-board .kanban-column {
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
+  }
+}
+
+/* =========================================
+   MOBILE: ONE COLUMN PER ROW
+   ========================================= */
+
+@media (max-width: 600px) {
+  .kanban-board {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 0 0 16px;
+  }
+
+  .kanban-board .kanban-column {
+    width: 100%;
+    height: 440px;
+    min-height: 440px;
+    max-height: 440px;
+  }
+
+  .kanban-board .kanban-column .column-header {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .kanban-board .kanban-column .cards-stack {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .app-card {
+    padding: 12px;
+    gap: 9px;
+  }
+
+  .app-card .card-title {
+    font-size: 0.94rem;
+  }
+
+  .app-card .card-bottom-controls {
+    flex-wrap: wrap;
+  }
+
+  .table-view-container table th,
+  .table-view-container table td {
+    padding: 11px 12px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .kanban-board .kanban-column {
+    height: 420px;
+    min-height: 420px;
+    max-height: 420px;
+  }
+
+  .kanban-board .kanban-column .column-header {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  .app-card {
+    padding: 10px;
+  }
+
+  .app-card .card-title {
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .app-card,
+  .app-card .card-actions,
+  .app-card .btn-icon,
+  .app-card .card-bottom-controls .status-select-badge,
+  .kanban-column .btn-column-add {
+    transition: none;
+  }
+}

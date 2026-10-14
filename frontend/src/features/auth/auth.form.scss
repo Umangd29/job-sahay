@@ -1,0 +1,157 @@
+@use "../../style/variables.scss" as *;
+
+.auth-page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(124, 58, 237, 0.07), transparent 60%),
+    $bg-canvas;
+
+  .auth-container {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border: 1px solid $border-subtle;
+    border-radius: 18px;
+    padding: 38px 34px;
+    box-shadow:
+      0 12px 30px -10px rgba(0, 0, 0, 0.06),
+      0 4px 12px -2px rgba(0, 0, 0, 0.03);
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 28px;
+
+      .auth-logo {
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $primary-purple-light;
+        border: 1px solid $primary-purple-border;
+        border-radius: 14px;
+        color: $primary-purple;
+        font-size: 1.5rem;
+      }
+
+      .auth-eyebrow {
+        display: block;
+        margin-bottom: 6px;
+        color: $primary-purple;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: $text-primary;
+        letter-spacing: -0.5px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.88rem;
+        color: $text-muted;
+        line-height: 1.5;
+      }
+    }
+
+    .auth-error-alert {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      color: #b91c1c;
+      font-size: 0.84rem;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+          font-size: 0.84rem;
+          font-weight: 600;
+          color: $text-secondary;
+        }
+
+        input {
+          width: 100%;
+          height: 44px;
+          padding: 0 14px;
+          background: #ffffff;
+          border: 1px solid $border-subtle;
+          border-radius: $radius-md;
+          font-size: 0.9rem;
+          color: $text-primary;
+          outline: none;
+          transition: all 0.15s ease-in-out;
+
+          &::placeholder {
+            color: $text-placeholder;
+          }
+
+          &:hover {
+            border-color: $border-hover;
+          }
+
+          &:focus {
+            border-color: $primary-purple;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+          }
+        }
+      }
+
+      .btn-submit {
+        margin-top: 8px;
+        width: 100%;
+        height: 44px;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+    }
+
+    .auth-footer {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid $border-subtle;
+      text-align: center;
+      font-size: 0.84rem;
+      color: $text-muted;
+
+      a {
+        color: $primary-purple;
+        font-weight: 600;
+        margin-left: 4px;
+        transition: color 0.15s ease;
+
+        &:hover {
+          color: $primary-purple-hover;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+@use "./variables.scss" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  text-decoration: none;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &.btn-primary {
+    background-color: $primary-purple;
+    color: #ffffff;
+    box-shadow: $shadow-sm;
+
+    &:hover:not(:disabled) {
+      background-color: $primary-purple-hover;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+
+  &.btn-secondary {
+    background-color: #ffffff;
+    color: $text-secondary;
+    border-color: $border-subtle;
+
+    &:hover:not(:disabled) {
+      background-color: $bg-canvas;
+      border-color: $border-hover;
+      color: $text-primary;
+    }
+  }
+
+  &.btn-danger {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+
+    &:hover:not(:disabled) {
+      background-color: #fee2e2;
+    }
+  }
+}
