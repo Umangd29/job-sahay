@@ -44,7 +44,19 @@ const Login = () => {
     <main className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
-          <div className="auth-logo">💎</div>
+          <div className="auth-logo">
+            <img
+              src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+              alt="Job Sahay Logo"
+              style={{
+                width: "60px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                margin: "10px auto 20px",
+              }}
+            />
+          </div>
           <span className="auth-eyebrow">Welcome Back</span>
           <h1>Sign In</h1>
           <p>Track your job applications and stay organized.</p>

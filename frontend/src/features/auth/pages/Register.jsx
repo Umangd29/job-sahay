@@ -59,7 +59,18 @@ const Register = () => {
     <main className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
-          <div className="auth-logo">💎</div>
+          <div className="auth-logo">           
+             <img
+              src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+              alt="Job Sahay Logo"
+              style={{
+                width: "60px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                margin: "10px auto 20px",
+              }}
+            /></div>
           <span className="auth-eyebrow">Get Started</span>
           <h1>Create Account</h1>
           <p>Organize and streamline your job search in one place.</p>

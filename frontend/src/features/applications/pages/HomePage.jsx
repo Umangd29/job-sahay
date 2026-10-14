@@ -94,7 +94,17 @@ const HomePage = () => {
             onClick={() => setMenuOpen(false)}
           >
             <span className="js-brand-mark">
-              <BriefcaseBusiness size={23} strokeWidth={2.2} />
+            <img
+              src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+              alt="Job Sahay Logo"
+              style={{
+                width: "60px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                margin: "10px auto 20px",
+              }}
+            />
             </span>
             <span className="js-brand-name">
               Job <span>Sahay</span>
@@ -200,7 +210,17 @@ const HomePage = () => {
                   <span>Total applications</span>
                   <strong>12</strong>
                   <div className="js-mini-icon js-icon-purple">
-                    <BriefcaseBusiness size={17} />
+                      <img
+                      src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+                      alt="Job Sahay Logo"
+                      style={{
+                        width: "60px",
+                        height: "auto",
+                        objectFit: "contain",
+                        display: "block",
+                        margin: "10px auto 20px",
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -388,7 +408,17 @@ const HomePage = () => {
           <div className="js-container">
             <div className="js-about-card">
               <div className="js-about-symbol">
-                <BriefcaseBusiness size={29} />
+                            <img
+              src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+              alt="Job Sahay Logo"
+              style={{
+                width: "60px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                margin: "10px auto 20px",
+              }}
+            />
               </div>
               <span className="js-section-kicker">MEET JOB SAHAY</span>
               <h2>
@@ -434,7 +464,17 @@ const HomePage = () => {
         <div className="js-container js-footer-inner">
           <Link to="/" className="js-brand">
             <span className="js-brand-mark">
-              <BriefcaseBusiness size={20} />
+                          <img
+              src="/Job%20Sahay%20Career%20Growth%20Logo.png"
+              alt="Job Sahay Logo"
+              style={{
+                width: "60px",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                margin: "10px auto 20px",
+              }}
+            />
             </span>
             <span className="js-brand-name">
               Job <span>Sahay</span>
